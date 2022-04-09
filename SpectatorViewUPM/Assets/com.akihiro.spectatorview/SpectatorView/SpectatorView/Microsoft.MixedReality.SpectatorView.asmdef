@@ -1,12 +1,15 @@
 {
     "name": "Microsoft.MixedReality.SpectatorView",
+    "rootNamespace": "",
     "references": [
         "Microsoft.MixedReality.PhotoCapture",
         "Microsoft.MixedReality.SpatialAlignment",
         "Microsoft.MixedReality.SpectatorView.ExternalDependencies",
         "Unity.TextMeshPro",
         "Unity.XR.ARFoundation",
-        "UnityEngine.UI"
+        "UnityEngine.UI",
+        "Unity.XR.WindowsMixedReality",
+        "Microsoft.MixedReality.OpenXR"
     ],
     "includePlatforms": [
         "Editor",
@@ -19,6 +22,17 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.windowsmr",
+            "expression": "4.6.2",
+            "define": "WINMR"
+        },
+        {
+            "name": "com.microsoft.mixedreality.openxr",
+            "expression": "",
+            "define": "OPENXR"
+        }
+    ],
     "noEngineReferences": false
 }

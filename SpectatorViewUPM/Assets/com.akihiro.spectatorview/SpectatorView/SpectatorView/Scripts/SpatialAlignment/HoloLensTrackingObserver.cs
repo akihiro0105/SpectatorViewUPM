@@ -19,7 +19,7 @@ namespace Microsoft.MixedReality.SpectatorView
             {
 #if UNITY_EDITOR
                 return TrackingState.Tracking;
-#elif UNITY_WSA
+#elif UNITY_WSA&&!(WINMR||OPENXR)
                 if (UnityEngine.XR.WSA.WorldManager.state == UnityEngine.XR.WSA.PositionalLocatorState.Active)
                 {
                     return TrackingState.Tracking;
@@ -27,7 +27,7 @@ namespace Microsoft.MixedReality.SpectatorView
 
                 return TrackingState.LostTracking;
 #else
-                return TrackingState.Unknown;
+                return TrackingState.Tracking;
 #endif
             }
         }

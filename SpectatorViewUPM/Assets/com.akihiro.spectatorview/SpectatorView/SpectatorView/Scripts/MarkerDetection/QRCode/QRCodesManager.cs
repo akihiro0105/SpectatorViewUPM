@@ -109,7 +109,13 @@ namespace Microsoft.MixedReality.SpectatorView
             {
                 try
                 {
+#if WINMR
+                    var appSpatialCoordinateSystem = WinRTExtensions.GetSpatialCoordinateSystem(UnityEngine.XR.WindowsMR.WindowsMREnvironment.OriginSpatialCoordinateSystem);
+#elif OPENXR
+                    var appSpatialCoordinateSystem = Microsoft.MixedReality.OpenXR.PerceptionInterop.GetSceneCoordinateSystem(UnityEngine.Pose.identity) as SpatialCoordinateSystem;
+#else
                     var appSpatialCoordinateSystem = WinRTExtensions.GetSpatialCoordinateSystem(UnityEngine.XR.WSA.WorldManager.GetNativeISpatialCoordinateSystemPtr());
+#endif
                     if (appSpatialCoordinateSystem != null)
                     {
                         // Get the relative transform from the unity origin
@@ -152,7 +158,7 @@ namespace Microsoft.MixedReality.SpectatorView
                         return false;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Debug.LogWarning($"Note: TryGetLocationForQRCode needs to be called from main thread: {e}");
                     return false;

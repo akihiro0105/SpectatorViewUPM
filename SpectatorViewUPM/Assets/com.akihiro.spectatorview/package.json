@@ -1,11 +1,11 @@
 {
-    "name": "com.akihiro.spectatorview",
-    "version": "1.0.0",
-    "displayName": "com.akihiro.spectatorview",
-    "description": "com.akihiro.spectatorview",
-    "unity": "2019.4",
-    "dependencies": {
-        "com.unity.xr.arfoundation": "4.1.9",
-        "com.unity.xr.arkit": "4.1.9"
-    }
+  "name": "com.akihiro.spectatorview",
+  "version": "1.0.0",
+  "displayName": "com.akihiro.spectatorview",
+  "description": "Support Plugin version\nUnty 2019\n- Legacy XR\n- Windows XR (Downgrade version)\n    - Windows XR Plugin 2.9.2\n    - AR Foundation 2.1.19\n    - AR Subsystems 2.1.19\n    - ARKit XR Plugin 2.1.19\n\nUnity 2020\n- Windows XR\n- OpenXR",
+  "unity": "2019.4",
+  "dependencies": {
+    "com.unity.xr.arfoundation": "4.1.9",
+    "com.unity.xr.arkit": "4.1.9"
+  }
 }

@@ -838,7 +838,7 @@ namespace Microsoft.MixedReality.PhotoCapture
         internal CameraType CameraType { get; private set; }
 
 #if !(CAN_USE_UWP_TYPES)
-// These events are unused when running in the editor
+        // These events are unused when running in the editor
 #pragma warning disable 0067
 #endif
         /// <summary>
@@ -877,7 +877,7 @@ namespace Microsoft.MixedReality.PhotoCapture
             CameraType = CameraType.Invalid;
             CaptureMode = captureMode;
 
-#if CAN_USE_UNITY_TYPES && UNITY_WSA && CAN_USE_UWP_TYPES
+#if CAN_USE_UNITY_TYPES && UNITY_WSA && CAN_USE_UWP_TYPES&&!(WINMR||OPENXR)
             IntPtr coordinateSystemPtr;
             // this must be done from the main thread, so done in 
             coordinateSystemPtr = UnityEngine.XR.WSA.WorldManager.GetNativeISpatialCoordinateSystemPtr();

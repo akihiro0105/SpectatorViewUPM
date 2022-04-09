@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-#if UNITY_WSA
+#if UNITY_WSA&&!(WINMR||OPENXR)
 using UnityEngine.XR.WSA;
 using UnityEngine.XR.WSA.Persistence;
 #endif
@@ -25,7 +25,7 @@ namespace Microsoft.MixedReality.SpectatorView
     {
         private static Task<WorldAnchorCoordinateService> sharedCoordinateService;
         private readonly Transform parentTransform;
-#if UNITY_WSA
+#if UNITY_WSA&&!(WINMR||OPENXR)
         private Task<WorldAnchorStore> worldAnchorStoreTask;
 #endif
 
@@ -70,7 +70,7 @@ namespace Microsoft.MixedReality.SpectatorView
 
         public async Task InitializeKnownCoordinatesAsync()
         {
-#if UNITY_WSA
+#if UNITY_WSA&&!(WINMR||OPENXR)
             WorldAnchorStore store = await GetWorldAnchorStoreAsync();
 
             foreach (string knownId in store.GetAllIds())
@@ -94,7 +94,7 @@ namespace Microsoft.MixedReality.SpectatorView
 
         public async Task<ISpatialCoordinate> CreateCoordinateAsync(string id, Vector3 worldPosition, Quaternion worldRotation, CancellationToken cancellationToken)
         {
-#if UNITY_WSA
+#if UNITY_WSA&&!(WINMR||OPENXR)
             await TryDeleteCoordinateAsync(id, cancellationToken);
 
             GameObject gameObject = new GameObject(id);
@@ -124,7 +124,7 @@ namespace Microsoft.MixedReality.SpectatorView
 
         public override async Task<bool> TryDeleteCoordinateAsync(string key, CancellationToken cancellationToken)
         {
-#if UNITY_WSA
+#if UNITY_WSA&&!(WINMR||OPENXR)
             if (TryGetKnownCoordinate(key, out ISpatialCoordinate coordinate))
             {
                 WorldAnchorSpatialCoordinate worldAnchorCoordinate = (WorldAnchorSpatialCoordinate)coordinate;
@@ -137,7 +137,7 @@ namespace Microsoft.MixedReality.SpectatorView
             return await base.TryDeleteCoordinateAsync(key, cancellationToken);
         }
 
-#if UNITY_WSA
+#if UNITY_WSA&&!(WINMR||OPENXR)
         private async void Anchor_OnTrackingChanged(WorldAnchor worldAnchor, bool located)
         {
             if (located)
